@@ -228,9 +228,7 @@ This endpoint is used to retrieve the profile of the authenticated user.
 
 
 
-
-
-  ### User Logout Endpoint Documentation
+### User Logout Endpoint Documentation
 
 ## Endpoint: `/user/logout`
 
@@ -261,4 +259,72 @@ This endpoint is used to log out the authenticated user. It clears the authentic
     "message": "Unauthorized"
   }
   ```
+
+
+
+
+### Captain Register Endpoint Documentation
+
+## Endpoint: `/captain/register`
+
+### Method: POST
+
+### Description:
+This endpoint is used to register a new captain. It validates the input data and creates a new captain record in the database.
+
+### Request Body:
+- `email` (string, required): The email of the captain. Must be a valid email format.
+- `fullname` (object, required):
+  - `firstname` (string, required): The first name of the captain. Must be at least 3 characters long.
+  - `lastname` (string, required): The last name of the captain.
+- `password` (string, required): The password for the captain's account. Must be at least 6 characters long.
+- `vehicle` (object, required):
+  - `color` (string, required): The color of the vehicle. Must be at least 3 characters long.
+  - `plate` (string, required): The plate number of the vehicle. Must be at least 7 characters long.
+  - `capacity` (integer, required): The capacity of the vehicle. Must be at least 1.
+  - `vehicleType` (string, required): The type of the vehicle. Must be one of `car`, `bike`, or `auto`.
+
+
+#### Example Request:
+````json
+{
+  "email": "john.doe@example.com",
+  "fullname": {
+    "firstname": "John",
+    "lastname": "Doe"
+  },
+  "password": "password123",
+  "vehicle": {
+    "color": "red",
+    "plate": "ABC1234",
+    "capacity": 4,
+    "vehicleType": "car"
+  }
+}
+
+````
+
+### Responses:
+
+#### Success:
+- **Status Code: 201 Created**
+- **Response Body:**
+  ```json
+  {
+    "captain": {
+      "fullname": {
+        "firstname": "John",
+        "lastname": "Doe"
+      },
+      "email": "john.doe@example.com",
+      "vehicle": {
+        "color": "red",
+        "plate": "ABC1234",
+        "capacity": 4,
+        "vehicleType": "car"
+      }
+    },
+    "token": "jwt_token_here"
+  }
+   ```
 
