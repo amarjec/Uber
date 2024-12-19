@@ -328,3 +328,118 @@ This endpoint is used to register a new captain. It validates the input data and
   }
    ```
 
+
+### Captain Login Endpoint Documentation
+
+## Endpoint: `/captain/login`
+
+### Method: POST
+
+### Description:
+This endpoint is used to log in an existing captain. It requires the captain's email and password.
+
+### Request Body:
+```json
+{
+  "email": "john.doe@example.com", // string, required, must be a valid email format
+  "password": "password123" // string, required, must be at least 6 characters long
+}
+```
+
+### Responses:
+
+#### Success:
+- **Status Code: 200 OK**
+- **Response Body:**
+  ```json
+  {
+  "captain": {
+    "fullname": {
+      "firstname": "John",
+      "lastname": "Doe"
+    },
+    "email": "john.doe@example.com",
+    "vehicle": {
+      "color": "red",
+      "plate": "ABC1234",
+      "capacity": 4,
+    }
+  }
+  }
+  ```
+
+
+
+
+
+  ### Captain Profile Endpoint Documentation
+
+## Endpoint: `/captain/profile`
+
+### Method: GET
+
+### Description:
+This endpoint is used to retrieve the profile of the authenticated captain.
+
+### Headers:
+```json
+{
+  "Authorization": "Bearer your_jwt_token" // string, required, the JWT token for authentication
+}
+```
+
+### Responses:
+
+#### Success:
+- **Status Code: 200 OK**
+- **Response Body:**
+  ```json
+  {
+  "_id": "captain_id",
+  "fullname": {
+    "firstname": "John",
+    "lastname": "Doe"
+  },
+  "email": "john.doe@example.com",
+  "vehicle": {
+    "color": "red",
+    "plate": "ABC1234",
+    "capacity": 4,
+    "vehicleType": "car"
+  }
+  }
+  ```
+
+
+
+
+
+  ### Captain Logout Endpoint Documentation
+
+## Endpoint: `/captain/logout`
+
+### Method: GET
+
+### Description:
+This endpoint is used to log out the authenticated captain. It clears the authentication token from cookies and blacklists the token to prevent further use.
+
+### Headers:
+```json
+{
+  "Authorization": "Bearer your_jwt_token" // string, required, the JWT token for authentication
+}
+```
+
+### Responses:
+
+#### Success:
+- **Status Code: 200 OK**
+- **Response Body:**
+```json
+ {
+  "message": "Logged out successfully"
+ }
+```
+
+
+
