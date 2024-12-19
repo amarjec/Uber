@@ -87,6 +87,9 @@ Example:
 
 
 
+
+
+
 # User Login Endpoint Documentation
 
 ## Endpoint: `/users/login`
@@ -170,3 +173,92 @@ Example:
   ]
 }
 ```
+
+
+
+
+
+
+
+
+
+
+
+# User Profile Endpoint Documentation
+
+## Endpoint: `/user/profile`
+
+### Method: GET
+
+### Description:
+This endpoint is used to retrieve the profile of the authenticated user.
+
+### Headers:
+- `Authorization` (string, required): The JWT token for authentication. Should be in the format `Bearer <token>`.
+
+### Responses:
+
+#### Success:
+- **Status Code: 200 OK**
+- **Response Body:**
+  ```json
+  {
+    "_id": "user_id",
+    "fullname": {
+      "firstname": "John",
+      "lastname": "Doe"
+    },
+    "email": "john.doe@example.com",
+    "socketId": null
+  }
+
+#### Authentication Errors:
+- **Status Code: 401 Unauthorized**
+- **Response Body:**
+
+ ```json
+  {
+    "message": "Authentication failed"
+  }
+  ```
+
+
+
+
+
+
+
+
+
+  ### User Logout Endpoint Documentation
+
+## Endpoint: `/user/logout`
+
+### Method: GET
+
+### Description:
+This endpoint is used to log out the authenticated user. It clears the authentication token from cookies and blacklists the token to prevent further use.
+
+### Headers:
+- `Authorization` (string, required): The JWT token for authentication. Should be in the format `Bearer <token>`.
+
+### Responses:
+
+#### Success:
+- **Status Code: 200 OK**
+- **Response Body:**
+  ```json
+  {
+    "message": "Logged out successfully"
+  }
+
+#### Authentication Errors:
+- **Status Code: 401 Unauthorized**
+- **Response Body:**
+
+ ```json
+  {
+    "message": "Unauthorized"
+  }
+  ```
+
